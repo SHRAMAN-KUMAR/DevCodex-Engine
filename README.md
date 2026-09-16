@@ -1,4 +1,4 @@
-# 🌌 DevCodex: The AI-First Knowledge Engine
+# 🌌 DevCodex Engine: The AI-First Knowledge Engine
 
 Welcome to **DevCodex**—the open-source core of a revolutionary, ever-evolving knowledge graph designed to bridge the gap between human engineering wisdom and AI agent execution. 
 
