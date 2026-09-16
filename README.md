@@ -1,47 +1,61 @@
-# 🌌 DevCodex Engine: The AI-First Knowledge Engine
+# DevCodex Engine
 
-Welcome to **DevCodex**—the open-source core of a revolutionary, ever-evolving knowledge graph designed to bridge the gap between human engineering wisdom and AI agent execution. 
+DevCodex Engine is the open-source infrastructure for building, curating, and deploying AI-first knowledge graphs. It bridges the gap between human engineering wisdom and autonomous AI execution by replacing static documentation with traversable, high-signal rules and patterns.
 
-We are building a world where your AI agents don't just "guess" architectural patterns or security rules; they **know** them. DevCodex is designed to augment reasoning by feeding AI agents crisp, high-signal nodes and typed edges, completely transforming how software is built, scaled, and secured globally.
+While Large Language Models possess broad generalized capabilities, they lack deterministic alignment with an organization's specific architectural and security boundaries. DevCodex solves this by defining engineering knowledge as crisp nodes and typed edges, allowing AI agents to instantly align with precise project contexts before writing a single line of code.
+
+## Architecture Overview
+
+DevCodex separates the open-source retrieval machinery (the Engine) from the proprietary global intelligence (Main DevCodex).
+
+```mermaid
+flowchart TD
+    subgraph OS [DevCodex Engine - Open Source]
+        Schema[Graph Specification]
+        Curator[Curation Mechanics]
+        AgentProtocol[Agent Traversal Protocols]
+    end
+
+    subgraph Prop [Main DevCodex - Proprietary Data]
+        CanonGraph[(Canonical Graph)]
+        Prose[Deep Context Docs]
+    end
+
+    subgraph Project [Consuming Repository]
+        Lock[.devcodex.lock]
+        AI((AI Agent))
+    end
+
+    CanonGraph -->|Managed Updates| Lock
+    Lock <--> Curator
+    Curator <--> Schema
+    AI -->|Traverses| AgentProtocol
+    AgentProtocol -.-> Lock
+```
+
+## Core Capabilities
+
+- **Deterministic Knowledge Graphs**: Knowledge is stored as atomic nodes connected by typed edges (`part-of`, `depends-on`, `implements`). Agents pull only what they need based on exact task context.
+- **Authority Scoping**: Every node explicitly declares its authority (`rule`, `recommendation`, or `principle`). The engine augments agent reasoning rather than blindly biasing it.
+- **Project-Level Curation**: Using `.devcodex.lock`, projects pull and freeze specific sub-graphs, ensuring reproducible AI behavior locally while maintaining upstream freshness.
+- **Agent-First Traversal**: Optimized for autonomous LLMs. The engine prevents context-window bloat by providing high-signal telemetry instead of walls of prose, leaving deep documentation strictly for on-demand elaboration.
+
+## Open Source vs. Commercial Boundary
+
+To ensure DevCodex can operate at a global scale while remaining commercially sustainable, the system boundaries are strictly defined:
+
+1. **DevCodex Engine (This Repository)**: 100% open-source. Includes all graph schemas, agent traversal mechanics, local state management, and validation tooling. You are free to build, host, and traverse your own proprietary knowledge graphs using this engine.
+2. **DevCodex Foundation (Proprietary)**: The canonical global database of security practices, production standards, and architectural patterns. Access to the managed global intelligence layer is provided via a commercial subscription.
+
+## Getting Started
+
+*(Instructions for initializing the engine and linking to a knowledge graph will be documented here as core tooling is released.)*
+
+## Specifications & Guidelines
+
+- **Graph Schema Definition**: `graph/schema.md`
+- **Agent Traversal Protocol**: `AGENTS.md`
+- **Project Curation Mechanics**: `CURATION.md`
 
 ---
-
-## 🚀 The Vision: A World Connected by Structured Wisdom
-
-Software engineering knowledge is currently trapped in walls of prose, scattered docs, and tribal knowledge. DevCodex changes the paradigm. We map knowledge into an actionable **Graph**:
-- **For Humans:** A clear, interactive map of patterns, security mandates, and architectural decisions.
-- **For AI Agents:** A precise, traversable graph (`graph/nodes.jsonl`) that agents read to instantly understand the *rules*, *principles*, and *context* of a project before writing a single line of code.
-
-Imagine dropping an AI agent into any codebase and having it instantly align with the world's best engineering practices, securely and flawlessly. That is the world DevCodex is building.
-
-## 🏗️ What is Open Source (Public) vs. Commercial?
-
-We are aggressively committed to building a transparent, powerful open-source foundation. To ensure DevCodex empowers the entire world while remaining sustainable, we have clearly delineated the open-source machinery from the proprietary intelligence.
-
-### 🟢 What is Public (This Repository - The Core Engine)
-This repository contains the **DevCodex Core / Engine**. It is the open-source machinery that makes the magic happen. It will **never** be artificially limited. It includes:
-1. **The Graph Schema & Specification:** The core rules and typed edges (e.g., `part-of`, `implements`, `depends-on`) that define how knowledge is connected.
-2. **Local Curation Mechanics:** The tooling for projects to pull in knowledge and maintain a `.devcodex.lock` (curated subset of nodes).
-3. **Agent Interaction Protocols:** Standardized guidelines (like our `AGENTS.md`) teaching any LLM or AI agent exactly how to traverse and utilize a DevCodex graph.
-4. **Local Retrieval & Parsing:** Open-source tools for querying, rendering (Mermaid/HTML), and mutating the local knowledge graph.
-
-### 🔒 What remains Proprietary (Main DevCodex Intelligence)
-The commercial value and proprietary layer reside purely in the **Data**, not the machinery:
-1. **The Canonical Knowledge Graph (`graph/nodes.jsonl`):** The massive, continuously curated database of security rules, production patterns, and architecture decisions.
-2. **Deep Documentation (`docs/`):** The elaborative prose that backs up the nodes in the canonical graph.
-3. **Managed Freshness & Subscriptions:** The distribution system that seamlessly updates your project's local DevCodex with the latest global engineering intelligence.
-
-*You can build your own proprietary graphs using our open engine, entirely for free.*
-
-## 🧭 Orientation & Preparation
-
-We are preparing the engine for massive scale. If you are an open-source contributor, an AI agent builder, or an engineering leader looking to standardize your company's knowledge, here is how you can orient yourself:
-
-1. **Understand the Graph:** Knowledge is stored as nodes connected by typed edges. Agents enter the graph where the task points (a tag, a layer, or a tool) and pull only the handful of nodes they need.
-2. **Respect Authority:** Nodes declare their authority (`rule`, `recommendation`, `principle`) to augment judgment, not railroad it.
-3. **Embrace Curation:** A project should only curate what it needs. Knowledge flows from the main graph to the project locally.
-
-## 🤝 Join the Revolution
-We are standardizing how AI builds software. Prepare your agents. Define your graphs. Let's build the future, perfectly aligned.
-
-*More engine components, schema definitions, and tooling will be released into this public repository shortly. Star the repo to stay tuned!*
+*DevCodex Engine — Standardizing how AI builds software.*
